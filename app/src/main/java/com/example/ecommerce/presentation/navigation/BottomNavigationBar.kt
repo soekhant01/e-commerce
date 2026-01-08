@@ -26,7 +26,13 @@ fun BottomNavigationBar(modifier: Modifier = Modifier, navController: NavHostCon
             NavigationBarItem(
                 selected = navItem.route == currentRoute,
                 onClick = {
-                    navController.navigate(navItem.route)
+                    navController.navigate(navItem.route){
+                        popUpTo(navController.graph.startDestinationId) {
+                            saveState = true
+                        }
+                        launchSingleTop = true
+                        restoreState = true
+                    }
                 },
                 icon = { Icon(painter = painterResource(id = navItem.icon), contentDescription = navItem.label) },
                 label = { Text(navItem.label) })
