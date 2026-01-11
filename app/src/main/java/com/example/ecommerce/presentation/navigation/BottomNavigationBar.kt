@@ -7,6 +7,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -17,7 +18,9 @@ fun BottomNavigationBar(modifier: Modifier = Modifier, navController: NavHostCon
         BottomNavItem.Home, BottomNavItem.Cart, BottomNavItem.Favorite
     )
 
-    NavigationBar {
+    NavigationBar(
+        containerColor = Color(0xFFF4F6F8)
+    ) {
 
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentRoute = navBackStackEntry?.destination?.route
