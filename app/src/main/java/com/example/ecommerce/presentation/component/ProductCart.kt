@@ -17,6 +17,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -25,10 +26,11 @@ import androidx.compose.ui.unit.sp
 import com.example.ecommerce.R
 
 import com.example.ecommerce.data.model.Product
+import com.example.ecommerce.data.model.sampleProducts
 import com.example.ecommerce.ui.theme.EcommerceTheme
 
 @Composable
-fun ProductCart(modifier: Modifier = Modifier) {
+fun ProductCart(modifier: Modifier = Modifier, title: String, price: Double, imageRes: Int) {
 
     Card(
         modifier = modifier.fillMaxWidth(),
@@ -39,29 +41,21 @@ fun ProductCart(modifier: Modifier = Modifier) {
         elevation = CardDefaults.cardElevation(2.dp)
     ) {
         Column(
-            modifier = Modifier.padding(start = 32.dp)
+            modifier = Modifier.padding(16.dp)
         ) {
             Image(
-                painter = painterResource(R.drawable.img1),
+                painter = painterResource(imageRes),
                 contentDescription = null,
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth().size(140.dp),
+                contentScale = ContentScale.Crop
             )
-            Text("Essence Mascara Lash Princess", fontWeight = FontWeight.Bold, fontSize = 18.sp)
+            Text(title, fontWeight = FontWeight.Bold, fontSize = 18.sp, maxLines = 2)
             Spacer(modifier.height(8.dp))
-            Text("$9.99", fontWeight = FontWeight.Bold, fontSize = 18.sp)
+            Text("$$price", fontWeight = FontWeight.Bold, fontSize = 18.sp)
             Spacer(modifier.height(16.dp))
-
 
         }
 
     }
 
-}
-
-@Preview(showBackground = true)
-@Composable
-private fun ProductCartPreview() {
-    EcommerceTheme() {
-        ProductCart()
-    }
 }

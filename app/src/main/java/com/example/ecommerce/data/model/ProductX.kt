@@ -9,7 +9,6 @@ data class ProductX(
     val discountPercentage: Double,
     val id: Int,
     val images: List<String>,
-    val meta: Meta,
     val minimumOrderQuantity: Int,
     val price: Double,
     val rating: Double,

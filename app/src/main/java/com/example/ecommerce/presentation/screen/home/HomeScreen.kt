@@ -2,6 +2,7 @@ package com.example.ecommerce.presentation.screen.home
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -9,6 +10,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -30,12 +34,15 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.ecommerce.R
+import com.example.ecommerce.data.model.Product
+import com.example.ecommerce.data.model.sampleProducts
 import com.example.ecommerce.presentation.component.ProductCart
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(modifier: Modifier = Modifier) {
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState())
+
     Scaffold(
 
         containerColor = Color.White, topBar = {
@@ -76,22 +83,62 @@ fun HomeScreen(modifier: Modifier = Modifier) {
 
     ) { innerPadding ->
 
-        Column(
+        LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding),
 
-            ) {
-            Column(
-                modifier = Modifier.padding(16.dp)
-            ) {
-
-                Text("Best Seller Items", fontWeight = FontWeight.Bold, fontSize = 24.sp)
+        ) {
+            item {
+                Text("Best Seller Items", fontWeight = FontWeight.Bold, fontSize = 24.sp, modifier = Modifier.padding(start = 16.dp, top = 24.dp))
                 Spacer(modifier.height(16.dp))
-                ProductCart()
+                LazyRowProduct()
+
+            }
+
+            item {
+                Spacer(modifier.height(32.dp))
+                Text("Recommend For You", fontWeight = FontWeight.Bold, fontSize = 24.sp, modifier = Modifier.padding(start = 16.dp))
+                Spacer(modifier.height(16.dp))
+                LazyRowProduct()
+            }
+
+            item {
+                Spacer(modifier.height(32.dp))
+                Text("Recommend For You", fontWeight = FontWeight.Bold, fontSize = 24.sp, modifier = Modifier.padding(start = 16.dp))
+                Spacer(modifier.height(16.dp))
+                LazyRowProduct()
+
+            }
+
+
+            item {
+                Spacer(modifier.height(32.dp))
+                Text("Recommend For You", fontWeight = FontWeight.Bold, fontSize = 24.sp, modifier = Modifier.padding(start = 16.dp))
+                Spacer(modifier.height(16.dp))
+                LazyRowProduct()
+                Spacer(modifier.height(100.dp))
+
             }
         }
 
+    }
+}
+
+@Composable
+fun LazyRowProduct(modifier: Modifier = Modifier) {
+
+    LazyRow(
+        contentPadding = PaddingValues(horizontal = 16.dp),
+        horizontalArrangement = Arrangement.spacedBy(16.dp)
+    ) {
+        items(sampleProducts) { product ->
+            ProductCart(
+                title = product.title,
+                price = product.price,
+                imageRes = product.imageRes
+            )
+        }
     }
 }
 
