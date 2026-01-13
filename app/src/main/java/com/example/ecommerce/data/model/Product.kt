@@ -1,8 +1,25 @@
 package com.example.ecommerce.data.model
 
 data class Product(
-    val limit: Int,
-    val products: List<ProductX>,
-    val skip: Int,
-    val total: Int
+    val availabilityStatus: String,
+    val brand: String,
+    val category: String,
+    val description: String,
+    val dimensions: Dimensions,
+    val discountPercentage: Double,
+    val id: Int,
+    val images: List<String>,
+    val minimumOrderQuantity: Int,
+    val price: Double,
+    val rating: Double,
+    val returnPolicy: String,
+    val reviews: List<Review>,
+    val shippingInformation: String,
+    val sku: String,
+    val stock: Int,
+    val tags: List<String>,
+    val thumbnail: String,
+    val title: String,
+    val warrantyInformation: String,
+    val weight: Int
 )
